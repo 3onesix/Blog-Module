@@ -8,6 +8,9 @@ class Article_Model extends My_Model {
 		
 		$this->belongs_to('blog');
 		$this->belongs_to('user');
+		$this->has_many('tags', array(
+			'class_name' => 'article_tag_model'
+		));
 		
 		$this->validates('subject', 'required');
 		$this->validates('slug', 'required');
