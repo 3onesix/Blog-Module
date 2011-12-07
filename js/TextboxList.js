@@ -318,7 +318,7 @@ $.TextboxListBit = function(type, value, textboxlist, _options){
 					if (!focused) return;
 					var evStop = function(){ ev.stopPropagation(); ev.preventDefault(); };
 					if (options.stopEnter && ev.which === 13) evStop();
-					if ($.inArray(ev.which, splat(options.addKeys)) != -1 || ev.which === 13){
+					if ($.inArray(ev.which, splat(options.addKeys)) != -1 || ev.which === 188){
 						evStop();
 						toBox();
 					}

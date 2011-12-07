@@ -185,7 +185,7 @@ $.TextboxList.Autocomplete = function(textboxlist, _options){
 	};
 	
 	var navigate = function(ev){
-		var evStop = function(){ ev.stopPropagation(); ev.preventDefault(); };
+		var evStop = function(){ ev.stopImmediatePropagation(); ev.preventDefault(); };
 		switch (ev.which){
 			case 38: //up
 				evStop();
