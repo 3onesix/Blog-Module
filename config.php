@@ -9,6 +9,11 @@ $module		 						= array(
 			'label' 				=> 'Include Short Body Field',
 			'key'					=> 'include_short',
 			'type'					=> 'checkbox'
+		),
+		array(
+			'label'					=> 'Include Tags',
+			'key'					=> 'include_tags',
+			'type'					=> 'checkbox'
 		)
 	),
 	'files'							=> array(
