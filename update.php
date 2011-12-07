@@ -2,7 +2,7 @@
 
 function update($module)
 {
-	if ($module->version == '1.2.1')
+	if ($module->version == '1.2.2')
 	{
 		create_table('starter_article_tags', array(
 			array('name' => 'starter_article_id', 'type' => 'integer'),
