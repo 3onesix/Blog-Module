@@ -34,12 +34,12 @@ class Blog extends MY_Controller
 				$status = get_filter('status');
 			}
 		}
-		$this->load->vars('pages', ceil($this->job_model->count(isset($status) ? array('is_published' => $status) : null) / 10));
+		$this->load->vars('pages', ceil($this->article_model->count(isset($status) ? array('is_published' => $status) : null) / 10));
 		if (get_filter('search'))
 		{
 			$query = get_filter('search');
 			$this->db->where('(subject LIKE "%'.$query.'%")');
-			$this->load->vars('pages', ceil($this->job_model->count(isset($status) ? array('is_published' => $status) : null) / 10));
+			$this->load->vars('pages', ceil($this->article_model->count(isset($status) ? array('is_published' => $status) : null) / 10));
 			$this->db->where('(subject LIKE "%'.$query.'%")');
 		}
 		
