@@ -3,7 +3,7 @@
 $module		 						= array(
 	'name'							=> 'Blog',
 	'simple_name'					=> 'starter_blog',
-	'version'						=> '1.2.2', //added relative date among other things
+	'version'						=> '1.2.3', //added relative date among other things
 	'settings'						=> array(
 		array(
 			'label' 				=> 'Include Short Body Field',

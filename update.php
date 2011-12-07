@@ -4,7 +4,15 @@ function update($module)
 {
 	if ($module->version == '1.2.1')
 	{
-		//create_column('starter_articles', array('name' => 'short2', 'type' => 'binary')); //short didn't exist before 1.2.1
+		create_table('starter_article_tags', array(
+			array('name' => 'starter_article_id', 'type' => 'integer'),
+			array('name' => 'name', 'type' => 'string'),
+			MIGRATION_TIMESTAMPS
+		));
+		change_column('starter_articles', 'blog_id', array(
+			'name' => 'starter_blog_id',
+			'type' => 'integer'
+		));
 	}
 }
 
