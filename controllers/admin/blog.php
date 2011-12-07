@@ -14,10 +14,34 @@ class Blog extends MY_Controller
 		$this->module = $this->module_model->first(array('simple_name' => 'starter_blog'));
 	}
 		
-	public function action_index($page = 0)
+	public function action_index()
 	{
-		$this->db->order_by('created_at', 'desc');
-		$articles = $this->article_model->find();
+		/* Filters */
+		$order = 'created_at';
+		$order_dir = 'DESC';
+		if (get_filter('sort_by'))
+		{
+			$order = get_filter('sort_by');
+		}
+		if (get_filter('sort_direction'))
+		{
+			$order_dir = get_filter('sort_direction');
+		}
+		if (get_filter('status'))
+		{
+			if (get_filter('status') != 'all')
+			{
+				$status = get_filter('status');
+				$this->db->where('is_published = '.$status);
+			}
+		}
+		if (get_filter('search'))
+		{
+			$query = get_filter('search');
+			$this->db->where('(subject LIKE "%'.$query.'%")');
+		}
+		
+		$articles = $this->article_model->find(array('order' => $order.' '.$order_dir, 'page' => $this->input->get('page') ? $this->input->get('page') : 1, 'limit' => 10));
 		
 		$this->load->vars('notice', flash('notice'));
 		$this->load->vars('articles', $articles);

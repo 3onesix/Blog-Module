@@ -21,6 +21,27 @@
 		<?php $odd = !$odd; ?>
 		<?php endforeach; ?>
 	</ul>
+	<?php pagination($pages); ?>
+</div>
+<div id="sidebar">
+<?php 
+sidebar_filters(array(
+	'Sort by' => array(
+		'created_at' => 'Created Date',
+		'updated_at' => 'Updated Date'
+	),
+	'Sort direction' => array(
+		'DESC' => 'Descending',
+		'ASC'  => 'Ascending'
+	),
+	'Status' => array(
+		'all' => 'All',
+		'1'   => 'Published',
+		'0'   => 'Unpublished'
+	),
+	'Search' => null
+));
+ ?>
 </div>
 
 <?php $this->load->view('admin/_footer'); ?>
