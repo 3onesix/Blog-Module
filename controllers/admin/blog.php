@@ -98,6 +98,7 @@ class Blog extends MY_Controller
 	{					
 		foreach($this->blog_model->all() as $blog) $blogs[$blog->id] = $blog->name;		
 		$this->load->vars('blogs', $blogs);
+		$this->load->vars('tags', $this->article_tag_model->unique());
 		$this->load->vars('article', flash_jot('article', $id));
 		$this->load->view('admin/blog/edit');
 	}
@@ -105,6 +106,8 @@ class Blog extends MY_Controller
 	public function action_update($id)
 	{
 		$data = $this->input->post('starter_article');
+		$tags = $data['tags'];
+		unset($data['tags']);
 		$data['user_id'] = $this->current_user->id;
 		$article = $this->article_model->update($id, $data);
 				
@@ -115,6 +118,17 @@ class Blog extends MY_Controller
 		}
 		else
 		{
+			//add tags
+			foreach ($article->tags->all() as $tag) $tag->destroy();
+			$set = array();
+			$tags = explode(',', $tags);
+			foreach ($tags as $tag)
+			{
+				$this->article_tag_model->create(array(
+					'starter_article_id' => $article->id,
+					'name' => $tag
+				));
+			}
 			flash('notice', 'Article was updated successfully.');
 		}
 		

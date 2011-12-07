@@ -23,7 +23,14 @@
 			<?php echo $f->label('body', 'Body:'); ?>
 			<?php echo $f->text_area('body'); ?>				
 		</div>
-		<input type="text" name="starter_article[tags]" id="starter_article_tags_field" value="" />
+		<?php 
+			$tag_list = array();
+			foreach ($article->tags->all() as $tag)
+			{
+				$tag_list[] = $tag->name;
+			}
+		?>
+		<input type="text" name="starter_article[tags]" id="starter_article_tags_field" value="<?=implode(',', $tag_list)?>" />
 		<script src="<?=base_url()?>assets/site/modules/starter_blog/js/TextboxList.js" type="text/javascript"></script>
 		<script src="<?=base_url()?>assets/site/modules/starter_blog/js/TextboxList.Autocomplete.js" type="text/javascript"></script>
 		<script src="<?=base_url()?>assets/site/modules/starter_blog/js/SuggestInput.js" type="text/javascript"></script>
@@ -40,10 +47,10 @@
 				t = new $.TextboxList('#starter_article_tags_field', {decode: function (o) { return []; }, unique: true, plugins: {autocomplete: {}}});
 				<?php if ($article->persisted() && $article->tags): ?>
 					var val = $('#starter_article_tags_field').val();
-					val.split(',');
-					for (var i in val)
+					val = val.split(',');
+					for (var i=0, len=val.length; i<len; i++)
 					{
-						t.add(val);
+						t.add(val[i]);
 					}
 				<?php endif; ?>
 				var autocomplete = t.plugins['autocomplete'];
