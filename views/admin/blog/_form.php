@@ -37,9 +37,7 @@
 				tags.push('<?=$tag->name?>');
 				<?php endforeach; ?>
 				var t;
-				t = new $.TextboxList('#starter_article_tags_field', {decode: function (o) {
-					return [];
-				}, bitsOptions: {stopEnter: true}, unique: true, plugins: {autocomplete: {inlineSuggest: false}}});
+				t = new $.TextboxList('#starter_article_tags_field', {decode: function (o) { return []; }, unique: true, plugins: {autocomplete: {}}});
 				<?php if ($article->persisted() && $article->tags): ?>
 					var val = $('#starter_article_tags_field').val();
 					val.split(',');
@@ -51,7 +49,7 @@
 				var autocomplete = t.plugins['autocomplete'];
 				autocomplete.setValues([
 				  <?php foreach ($tags as $tag): ?>
-				  ['<?=$tag->name?>', '<?=$tag->name?>'],
+				  ['<?=$tag->name?>', '<?=$tag->name?>', '<?=$tag->name?>', '<?=$tag->name?>'],
 				  <?php endforeach; ?>
 				]);
 			});

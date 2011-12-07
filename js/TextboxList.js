@@ -13,7 +13,6 @@ Script: TextboxList.js
 (function($){
 	
 $.TextboxList = function(element, _options){
-	
 	var original, container, list, current, focused = false, index = [], blurtimer, events = {};
 	var options = $.extend(true, {
     prefix: 'textboxlist',
@@ -24,7 +23,7 @@ $.TextboxList = function(element, _options){
 		hideEditableBits: true,
     inBetweenEditableBits: true,
 		keys: {previous: 37, next: 39},
-		bitsOptions: {editable: {}, box: {}},
+		bitsOptions: {editable: {addKeys: [13]}, box: {}},
     plugins: {},
 		// tip: you can change encode/decode with JSON.stringify and JSON.parse
 		encode: function(o){ 
@@ -105,7 +104,7 @@ $.TextboxList = function(element, _options){
 		if (klass == 'box'){
 			if (chk(options.max) && list.children('.' + options.prefix + '-bit-box').length + 1 > options.max) return false;
 			if (options.unique && $.inArray(uniqueValue(value), index) != -1) return false;		
-		}		
+		}
 		return new $.TextboxListBit(klass, value, self, $.extend(true, options.bitsOptions[klass], opt));
 	};
 	
@@ -319,7 +318,7 @@ $.TextboxListBit = function(type, value, textboxlist, _options){
 					if (!focused) return;
 					var evStop = function(){ ev.stopPropagation(); ev.preventDefault(); };
 					if (options.stopEnter && ev.which === 13) evStop();
-					if ($.inArray(ev.which, splat(options.addKeys)) != -1){
+					if ($.inArray(ev.which, splat(options.addKeys)) != -1 || ev.which === 13){
 						evStop();
 						toBox();
 					}
