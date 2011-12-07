@@ -32,16 +32,18 @@ class Blog extends MY_Controller
 			if (get_filter('status') != 'all')
 			{
 				$status = get_filter('status');
-				$this->db->where('is_published = '.$status);
 			}
 		}
+		$this->load->vars('pages', ceil($this->job_model->count(isset($status) ? array('is_published' => $status) : null) / 10));
 		if (get_filter('search'))
 		{
 			$query = get_filter('search');
 			$this->db->where('(subject LIKE "%'.$query.'%")');
+			$this->load->vars('pages', ceil($this->job_model->count(isset($status) ? array('is_published' => $status) : null) / 10));
+			$this->db->where('(subject LIKE "%'.$query.'%")');
 		}
 		
-		$articles = $this->article_model->find(array('order' => $order.' '.$order_dir, 'page' => $this->input->get('page') ? $this->input->get('page') : 1, 'limit' => 10));
+		$articles = $this->article_model->find(array('conditions' => (isset($status) ? array('is_published' => $status) : null), 'order' => $order.' '.$order_dir, 'page' => $this->input->get('page') ? $this->input->get('page') : 1, 'limit' => 10));
 		
 		$this->load->vars('notice', flash('notice'));
 		$this->load->vars('articles', $articles);
