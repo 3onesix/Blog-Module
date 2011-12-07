@@ -66,8 +66,10 @@ class Blog extends MY_Controller
 	public function action_create()
 	{
 		$data = $this->input->post('starter_article');
+		$tags = $data['tags'];
+		unset($data['tags']);
 		$data['user_id'] = $this->current_user->id;
-		$article = $this->article_model->create($data);	
+		$article = $this->article_model->create($data);
 				
 		if ( $article->errors() )
 		{
@@ -76,6 +78,17 @@ class Blog extends MY_Controller
 		}
 		else
 		{
+			//add tags
+			$set = array();
+			$tags = explode(',', $tags);
+			foreach ($tags as $tag)
+			{
+				$this->article_tag_model->create(array(
+					'starter_article_id' => $article->id,
+					'name' => $tag
+				));
+			}
+			
 			flash('notice', 'Article was created successfully.');
 			redirect('admin/blog');
 		}

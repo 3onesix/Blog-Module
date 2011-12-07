@@ -3,11 +3,11 @@
 	<fieldset>
 		<?php if (count($blogs) > 1): ?>
 			<div class="field">
-				<?php print $f->label('blog_id', 'Blog:'); ?>
-				<?php print $f->select('blog_id', $blogs); ?>
+				<?php print $f->label('starter_blog_id', 'Blog:'); ?>
+				<?php print $f->select('starter_blog_id', $blogs); ?>
 			</div>
 		<?php else: ?>
-			<input type="hidden" name="starter_article[blog_id]" value="<?=current(array_keys($blogs))?>" />
+			<input type="hidden" name="starter_article[starter_blog_id]" value="<?=current(array_keys($blogs))?>" />
 		<?php endif; ?>
 		<div class="field">
 			<?php echo $f->label('subject', 'Subject:'); ?>

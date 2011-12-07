@@ -15,7 +15,7 @@ class Article_Model extends My_Model {
 		$this->validates('subject', 'required');
 		$this->validates('slug', 'required');
 		$this->validates('user_id', 'required');
-		$this->validates('blog_id', 'required');
+		$this->validates('starter_blog_id', 'required');
 		
 		$this->before_validation('generate_slug');
 	}
