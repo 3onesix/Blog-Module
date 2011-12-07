@@ -79,13 +79,6 @@ class Article_Model extends My_Model {
 		}
 	}
 	
-	function order($by, $dir)
-	{
-		$this->db->order_by($by, $dir);
-		
-		return $this;
-	}
-	
 	function get_relative_date()
 	{
 		$stamp = $this->created_at;
