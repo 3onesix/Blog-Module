@@ -30,37 +30,39 @@
 				$tag_list[] = $tag->name;
 			}
 		?>
-		<input type="text" name="starter_article[tags]" id="starter_article_tags_field" value="<?=implode(',', $tag_list)?>" />
-		<script src="<?=base_url()?>assets/site/modules/starter_blog/js/TextboxList.js" type="text/javascript"></script>
-		<script src="<?=base_url()?>assets/site/modules/starter_blog/js/TextboxList.Autocomplete.js" type="text/javascript"></script>
-		<script src="<?=base_url()?>assets/site/modules/starter_blog/js/SuggestInput.js" type="text/javascript"></script>
-		<script src="<?=base_url()?>assets/site/modules/starter_blog/js/GrowingInput.js" type="text/javascript"></script>
-		<link rel="stylesheet" href="<?=base_url()?>assets/site/modules/starter_blog/css/TextboxList.Autocomplete.css" type="text/css" />
-		<link rel="stylesheet" href="<?=base_url()?>assets/site/modules/starter_blog/css/TextboxList.css" type="text/css" />
-		<script type="text/javascript">
-			$(function () {
-				var tags = new Array();
-				<?php foreach ($tags as $tag): ?>
-				tags.push('<?=$tag->name?>');
-				<?php endforeach; ?>
-				var t;
-				t = new $.TextboxList('#starter_article_tags_field', {decode: function (o) { return []; }, unique: true, plugins: {autocomplete: {}}});
-				<?php if ($article->persisted() && $article->tags): ?>
-					var val = $('#starter_article_tags_field').val();
-					val = val.split(',');
-					for (var i=0, len=val.length; i<len; i++)
-					{
-						t.add(val[i]);
-					}
-				<?php endif; ?>
-				var autocomplete = t.plugins['autocomplete'];
-				autocomplete.setValues([
-				  <?php foreach ($tags as $tag): ?>
-				  ['<?=$tag->name?>', '<?=$tag->name?>', '<?=$tag->name?>', '<?=$tag->name?>'],
-				  <?php endforeach; ?>
-				]);
-			});
-		</script>
+		<?php if ($this->module->setting('include_tags')): ?>
+			<input type="text" name="starter_article[tags]" id="starter_article_tags_field" value="<?=implode(',', $tag_list)?>" />
+			<script src="<?=base_url()?>assets/site/modules/starter_blog/js/TextboxList.js" type="text/javascript"></script>
+			<script src="<?=base_url()?>assets/site/modules/starter_blog/js/TextboxList.Autocomplete.js" type="text/javascript"></script>
+			<script src="<?=base_url()?>assets/site/modules/starter_blog/js/SuggestInput.js" type="text/javascript"></script>
+			<script src="<?=base_url()?>assets/site/modules/starter_blog/js/GrowingInput.js" type="text/javascript"></script>
+			<link rel="stylesheet" href="<?=base_url()?>assets/site/modules/starter_blog/css/TextboxList.Autocomplete.css" type="text/css" />
+			<link rel="stylesheet" href="<?=base_url()?>assets/site/modules/starter_blog/css/TextboxList.css" type="text/css" />
+			<script type="text/javascript">
+				$(function () {
+					var tags = new Array();
+					<?php foreach ($tags as $tag): ?>
+					tags.push('<?=$tag->name?>');
+					<?php endforeach; ?>
+					var t;
+					t = new $.TextboxList('#starter_article_tags_field', {decode: function (o) { return []; }, unique: true, plugins: {autocomplete: {}}});
+					<?php if ($article->persisted() && $article->tags): ?>
+						var val = $('#starter_article_tags_field').val();
+						val = val.split(',');
+						for (var i=0, len=val.length; i<len; i++)
+						{
+							t.add(val[i]);
+						}
+					<?php endif; ?>
+					var autocomplete = t.plugins['autocomplete'];
+					autocomplete.setValues([
+					  <?php foreach ($tags as $tag): ?>
+					  ['<?=$tag->name?>', '<?=$tag->name?>', '<?=$tag->name?>', '<?=$tag->name?>'],
+					  <?php endforeach; ?>
+					]);
+				});
+			</script>
+		<?php endif; ?>
 		<div class="field checkbox">
 			<?php echo $f->check_box('is_published'); ?>
 			<?php echo $f->label('is_published', 'Published'); ?>
