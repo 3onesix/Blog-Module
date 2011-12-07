@@ -10,6 +10,7 @@ class Blog extends MY_Controller
 		
 		$this->load->model('article_model');
 		$this->load->model('blog_model');
+		$this->load->model('article_tag_model');
 		
 		$this->module = $this->module_model->first(array('simple_name' => 'starter_blog'));
 	}
@@ -58,6 +59,7 @@ class Blog extends MY_Controller
 		
 		foreach($this->blog_model->all(array('order' => 'name')) as $blog) $blogs[$blog->id] = $blog->name;		
 		$this->load->vars('blogs', $blogs);
+		$this->load->vars('tags', $this->article_tag_model->unique());
 		$this->load->view('admin/blog/new', array('article' => flash_jot('article')));
 	}
 	

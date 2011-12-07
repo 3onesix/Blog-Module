@@ -9,4 +9,12 @@ class Article_Tag_Model extends My_Model {
 		$this->belongs_to('articles');
 	}
 	
+	function unique()
+	{
+		$this->db->distinct('name');
+		return $this->all(array(
+			'order' => 'name'
+		));
+	}
+	
 }
