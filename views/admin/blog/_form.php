@@ -20,8 +20,13 @@
 			</div>
 		<?php endif; ?>
 		<div class="field">
-			<?php echo $f->label('body', 'Body:'); ?>
-			<?php echo $f->text_area('body'); ?>				
+			<?php if ($this->module->setting('include_wysiwyg')): ?>
+				<?php echo $f->label('body', 'Body:'); ?>
+				<?php echo $f->text_area('body', array('class' => 'wysiwyg')); ?>
+			<?php else: ?>
+				<?php echo $f->label('body', 'Body:'); ?>
+				<?php echo $f->text_area('body'); ?>
+			<?php endif; ?>
 		</div>
 		<?php 
 			$tag_list = array();

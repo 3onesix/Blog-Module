@@ -3,7 +3,7 @@
 $module		 						= array(
 	'name'							=> 'Blog',
 	'simple_name'					=> 'starter_blog',
-	'version'						=> '1.2.3', //added relative date among other things
+	'version'						=> '1.2.4', //add WYSIWYG
 	'settings'						=> array(
 		array(
 			'label' 				=> 'Include Short Body Field',
@@ -13,6 +13,11 @@ $module		 						= array(
 		array(
 			'label'					=> 'Include Tags',
 			'key'					=> 'include_tags',
+			'type'					=> 'checkbox'
+		),
+		array(
+			'label'					=> 'Include Rich Text Editor',
+			'key'					=> 'include_wysiwyg',
 			'type'					=> 'checkbox'
 		)
 	),
