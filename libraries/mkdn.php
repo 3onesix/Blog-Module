@@ -1,4 +1,7 @@
 <?php
+
+if (!function_exists('Markdown'))
+{
 #
 # Markdown  -  A text-to-HTML conversion tool for web writers
 #
@@ -1666,4 +1669,6 @@ if(defined('BASEPATH')) {
         }
     }
 } 
+
+}
 ?>
