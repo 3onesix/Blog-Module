@@ -1662,6 +1662,8 @@ software, even if advised of the possibility of such damage.
 # Usage:
 # $this->load->library('mkdn');
 # $this->mkdn->translate($text);
+
+}
 if(defined('BASEPATH')) {
     class Mkdn {
         function translate($text) {
@@ -1669,6 +1671,4 @@ if(defined('BASEPATH')) {
         }
     }
 } 
-
-}
 ?>
