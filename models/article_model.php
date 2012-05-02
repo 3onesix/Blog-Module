@@ -40,8 +40,8 @@ class Article_Model extends My_Model {
 	
 	function get_formatted_body()
 	{
-		$this->load->library('mkdn');
-		return $this->mkdn->translate($this->body);
+		$this->load->library('markdown');
+		return $this->markdown->translate($this->body);
 	}
 	
 	function get_url()
