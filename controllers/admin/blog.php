@@ -35,6 +35,11 @@ class Blog extends MY_Controller
 				$status = get_filter('status');
 			}
 		}
+		if (get_filter('blog'))
+		{
+			$blog = get_filter('blog');
+		}
+		
 		$pages = ceil($this->article_model->count(isset($status) ? array('is_published' => $status) : null) / 10);
 		if (get_filter('search'))
 		{
@@ -45,8 +50,19 @@ class Blog extends MY_Controller
 		}
 		$pages = $pages ? $pages : 1;
 		
-		$articles = $this->article_model->find(array('conditions' => (isset($status) ? array('is_published' => $status) : null), 'order' => $order.' '.$order_dir, 'page' => $this->input->get('page') ? $this->input->get('page') : 1, 'limit' => 10));
+		$conditions = array();
 		
+		if ( isset($blog) ) $conditions['starter_blog_id'] = $blog;
+		if ( isset($status) ) $conditions['is_published'] = $status;
+		
+		$articles = $this->article_model->find(array(
+			'conditions' => $conditions, 
+			'order' => $order.' '.$order_dir, 
+			'page' => $this->input->get('page') ? $this->input->get('page') : 1, 
+			'limit' => 10)
+		);
+		
+		$this->load->vars('blogs', $this->blog_model->find(array('order'=>'name DESC'))->map('id','name'));
 		$this->load->vars('pages', $pages);
 		$this->load->vars('notice', flash('notice'));
 		$this->load->vars('articles', $articles);

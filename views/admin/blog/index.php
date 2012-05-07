@@ -24,8 +24,9 @@
 	<?php pagination($pages); ?>
 </div>
 <div id="sidebar">
-<?php 
-sidebar_filters(array(
+<?php $filters = array(); ?>
+<?php if ( count($blogs) ) $filters['Blog'] = $blogs; ?>
+<?php $filters += array(
 	'Sort by' => array(
 		'created_at' => 'Created Date',
 		'updated_at' => 'Updated Date'
@@ -40,8 +41,8 @@ sidebar_filters(array(
 		'0'   => 'Unpublished'
 	),
 	'Search' => null
-));
- ?>
+); ?>
+<?php sidebar_filters($filters); ?>
 </div>
 
 <?php $this->load->view('admin/_footer'); ?>
