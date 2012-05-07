@@ -40,7 +40,12 @@ class Blog extends MY_Controller
 			$blog = get_filter('blog');
 		}
 		
-		$pages = ceil($this->article_model->count(isset($status) ? array('is_published' => $status) : null) / 10);
+		$conditions = array();
+		
+		if ( isset($blog) ) $conditions['starter_blog_id'] = $blog;
+		if ( isset($status) ) $conditions['is_published'] = $status;
+		
+		$pages = ceil($this->article_model->count($conditions) / 10);
 		if (get_filter('search'))
 		{
 			$query = get_filter('search');
@@ -49,11 +54,6 @@ class Blog extends MY_Controller
 			$this->db->where('(subject LIKE "%'.$query.'%")');
 		}
 		$pages = $pages ? $pages : 1;
-		
-		$conditions = array();
-		
-		if ( isset($blog) ) $conditions['starter_blog_id'] = $blog;
-		if ( isset($status) ) $conditions['is_published'] = $status;
 		
 		$articles = $this->article_model->find(array(
 			'conditions' => $conditions, 
