@@ -12,6 +12,8 @@ class Article_Model extends My_Model {
 			'class_name' => 'article_tag_model'
 		));
 		
+		$this->belongs_to('image');
+		
 		$this->validates('subject', 'required');
 		$this->validates('slug', 'required');
 		$this->validates('user_id', 'required');
@@ -40,6 +42,7 @@ class Article_Model extends My_Model {
 	
 	function get_formatted_body()
 	{
+		$this->load->library('markdown');
 		return $this->markdown->translate($this->body);
 	}
 	

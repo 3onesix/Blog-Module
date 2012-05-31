@@ -15,6 +15,7 @@ function install()
 		array('name' => 'short', 'type' => 'binary'),
 		array('name' => 'body', 'type' => 'binary'),
 		array('name' => 'is_published', 'type' => 'boolean'),
+		array('name' => 'image_id', 'type' => 'integer'),
 		MIGRATION_TIMESTAMPS
 	));
 	create_table('starter_article_tags', array(

@@ -3,7 +3,7 @@
 $module		 						= array(
 	'name'							=> 'Blog',
 	'simple_name'					=> 'starter_blog',
-	'version'						=> '1.2.4', //add WYSIWYG
+	'version'						=> '1.2.5', //add WYSIWYG
 	'settings'						=> array(
 		array(
 			'label' 				=> 'Include Short Body Field',
@@ -19,7 +19,22 @@ $module		 						= array(
 			'label'					=> 'Include Rich Text Editor',
 			'key'					=> 'include_wysiwyg',
 			'type'					=> 'checkbox'
-		)
+		),
+		array(
+			'label'					=> 'Include Image',
+			'key'					=> 'include_image',
+			'type'					=> 'checkbox'
+		),
+		array(
+			'label'					=> 'Image Width',
+			'key'					=> 'image_width',
+			'type'					=> 'string'
+		),
+		array(
+			'label'					=> 'Image Height',
+			'key'					=> 'image_height',
+			'type'					=> 'string'
+		),
 	),
 	'files'							=> array(
 		array(

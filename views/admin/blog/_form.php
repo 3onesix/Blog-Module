@@ -28,6 +28,17 @@
 				<?php echo $f->text_area('body'); ?>
 			<?php endif; ?>
 		</div>
+		<div class="field">
+		<?php if ($this->module->setting('include_image')): ?>
+			<?php echo $f->label('image_id', 'Image:'); ?>
+			<?php echo $f->file_field('image_id', array(
+				'class' => 'image-manager',
+				'data-width' => $this->module->setting('image_width'),
+				'data-height' => $this->module->setting('image_height')
+			)); ?>
+			<?php if($article->image): ?><img src="<?=$article->image->url?>" /><?php endif; ?>	
+		<?php endif; ?>
+		</div>
 		<?php 
 			$tag_list = array();
 			foreach ($article->tags->all() as $tag)

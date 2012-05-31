@@ -14,6 +14,14 @@ function update($module)
 			'type' => 'integer'
 		));
 	}
+	
+	if ($module->version == '1.2.4')
+	{
+		create_column('starter_articles', array(
+			'name' => 'image_id',
+			'type' => 'integer'
+		));
+	}
 }
 
 update($module);
