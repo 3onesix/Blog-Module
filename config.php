@@ -43,11 +43,6 @@ $module		 						= array(
 			'include_on_page'		=> 1
 		),
 		array(
-			'type'					=> 'library',
-			'name'					=> 'mkdn.php',
-			'include_on_page'		=> 1
-		),
-		array(
 			'type'					=> 'view',
 			'name'					=> 'admin/_form.php',
 			'include_on_page'		=> 0
