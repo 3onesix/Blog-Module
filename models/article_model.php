@@ -128,6 +128,12 @@ class Article_Model extends My_Model {
 	
 	function find_published($conditions = array(), $offset = 0, $limit = null)
 	{
+		if (!isset($conditions['conditions']))
+		{
+			$conditions = array('conditions' => $conditions);
+		}
+		$conditions['conditions'] = array_merge($conditions['conditions'], array('is_published' => 1));
+		if (!isset($conditions['order'])) $conditions['order'] = 'published_at DESC';
 		$conditions = array_merge($conditions, array('is_published' => 1));
 		return $this->find($conditions, $offset, $limit);
 	}
