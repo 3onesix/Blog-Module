@@ -97,7 +97,7 @@ class Blog extends MY_Controller
 		}
 		else
 		{
-			if ($this->module->setting('include_tags'))
+			if ($this->module->setting('include_tags') && $tags)
 			{
 				//add tags
 				$set = array();
@@ -149,15 +149,18 @@ class Blog extends MY_Controller
 				//remove tags
 				foreach ($article->tags->all() as $tag) $tag->destroy();
 				
-				//add tags
-				$set = array();
-				$tags = explode(',', $tags);
-				foreach ($tags as $tag)
+				if ($tags)
 				{
-					$this->article_tag_model->create(array(
-						'starter_article_id' => $article->id,
-						'name' => $tag
-					));
+					//add tags
+					$set = array();
+					$tags = explode(',', $tags);
+					foreach ($tags as $tag)
+					{
+						$this->article_tag_model->create(array(
+							'starter_article_id' => $article->id,
+							'name' => $tag
+						));
+					}
 				}
 			}
 			flash('notice', 'Article was updated successfully.');
