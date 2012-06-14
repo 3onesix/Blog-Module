@@ -28,6 +28,7 @@
 <?php if ( count($blogs) > 1 ) $filters['Blog'] = $blogs; ?>
 <?php $filters += array(
 	'Sort by' => array(
+		'published_at' => 'Published Date',
 		'created_at' => 'Created Date',
 		'updated_at' => 'Updated Date'
 	),
