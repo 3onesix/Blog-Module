@@ -20,6 +20,20 @@ class Article_Model extends My_Model {
 		$this->validates('starter_blog_id', 'required');
 		
 		$this->before_validation('generate_slug');
+		
+		$this->before_save('check_published');
+	}
+	
+	function check_published()
+	{
+		if (!$this->published_at && $this->is_published)
+		{
+			$this->published_at = time();
+		}
+		else if ($this->published_at && !$this->is_published)
+		{
+			$this->published_at = 0;
+		}
 	}
 	
 	public function generate_slug()

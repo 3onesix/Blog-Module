@@ -30,6 +30,11 @@ function update($module)
 			'type' 		=> 'string',
 			'default' 	=> 'article'
 		));
+		create_column('starter_articles', array(
+			'name' 		=> 'published_at',
+			'type' 		=> 'integer',
+			'default' 	=> 0
+		));
 	}
 }
 
