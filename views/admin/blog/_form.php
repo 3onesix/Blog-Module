@@ -64,10 +64,13 @@
 					t = new $.TextboxList('#starter_article_tags_field', {decode: function (o) { return []; }, unique: true, plugins: {autocomplete: {}}});
 					<?php if ($article->persisted() && $article->tags): ?>
 						var val = $('#starter_article_tags_field').val();
-						val = val.split(',');
-						for (var i=0, len=val.length; i<len; i++)
+						if (val)
 						{
-							t.add(val[i]);
+							val = val.split(',');
+							for (var i=0, len=val.length; i<len; i++)
+							{
+								t.add(val[i]);
+							}
 						}
 					<?php endif; ?>
 					var autocomplete = t.plugins['autocomplete'];
