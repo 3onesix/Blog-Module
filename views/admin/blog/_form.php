@@ -81,7 +81,7 @@
 		<?php endif; ?>
 		<div class="field checkbox">
 			<?php echo $f->check_box('is_published'); ?>
-			<?php echo $f->label('is_published', 'Published'); ?>
+			<?php echo $f->label('is_published', $article->is_published ? 'Published at '.date('g:i a \o\n F d, Y', $article->published_at) : 'Publish'); ?>
 		</div>
 	</fieldset>
 </div>
