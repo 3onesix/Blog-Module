@@ -62,7 +62,7 @@ class Blog extends MY_Controller
 			'limit' => 10)
 		);
 		
-		$this->load->vars('blogs', $this->blog_model->find(array('order'=>'name DESC'))->map('id','name'));
+		$this->load->vars('blogs', array_merge(array(0 => ''), $this->blog_model->find(array('order'=>'name DESC'))->map('id','name')));
 		$this->load->vars('pages', $pages);
 		$this->load->vars('notice', flash('notice'));
 		$this->load->vars('articles', $articles);
