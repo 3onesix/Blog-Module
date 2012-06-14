@@ -47,7 +47,7 @@
 			}
 		?>
 		<?php if ($this->module->setting('include_tags')): ?>
-			<input type="text" name="starter_article[tags]" id="starter_article_tags_field" value="<?=implode(',', $tag_list)?>" />
+			<input type="text" name="starter_article[tags]" id="starter_article_tags_field" value="<?=($tag_list ? implode(',', $tag_list) : '')?>" />
 			<script src="<?=base_url()?>assets/site/modules/starter_blog/js/TextboxList.js" type="text/javascript"></script>
 			<script src="<?=base_url()?>assets/site/modules/starter_blog/js/TextboxList.Autocomplete.js" type="text/javascript"></script>
 			<script src="<?=base_url()?>assets/site/modules/starter_blog/js/SuggestInput.js" type="text/javascript"></script>
