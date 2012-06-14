@@ -3,7 +3,7 @@
 $module		 						= array(
 	'name'							=> 'Blog',
 	'simple_name'					=> 'starter_blog',
-	'version'						=> '1.2.5', //add WYSIWYG
+	'version'						=> '1.3', //add WYSIWYG
 	'settings'						=> array(
 		array(
 			'label' 				=> 'Include Short Body Field',

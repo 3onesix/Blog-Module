@@ -22,6 +22,15 @@ function update($module)
 			'type' => 'integer'
 		));
 	}
+	
+	if ($module->version == '1.2.5')
+	{
+		create_column('starter_articles', array(
+			'name' 		=> 'type',
+			'type' 		=> 'string',
+			'default' 	=> 'article'
+		));
+	}
 }
 
 update($module);

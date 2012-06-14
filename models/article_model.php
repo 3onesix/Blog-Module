@@ -112,4 +112,10 @@ class Article_Model extends My_Model {
 		}
 	}
 	
+	function find_published($conditions = array(), $offset = 0, $limit = null)
+	{
+		$conditions = array_merge($conditions, array('is_published' => 1));
+		return $this->find($conditions, $offset, $limit);
+	}
+	
 }
