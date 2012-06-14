@@ -18,7 +18,7 @@ class Blog extends MY_Controller
 	public function action_index()
 	{
 		/* Filters */
-		$order = 'published_at';
+		$order = 'published_at DESC, created_at';
 		$order_dir = 'DESC';
 		if (get_filter('sort_by'))
 		{
