@@ -12,7 +12,7 @@
 		<?php $odd = false; ?>
 		<?php foreach($articles as $article): ?>
 		<li<?=($odd ? ' class="odd"' : '')?> data-status="<?=($article->is_published ? 'published' : 'draft')?>">
-			<div class="what"><?=$article->subject?> <span class="sub">(created on <?=date('m/d/Y', $article->created_at)?><?php if (count($blogs) > 1):?> in <strong><?=$article->blog->name?></strong><?php endif; ?>)</span></div>
+			<div class="what"><?=$article->subject?> <span class="sub">(<?php if($article->is_published):?>published on <?=date('m/d/Y', $article->published_at)?><?php else: ?>draft<?php endif; ?><?php if (count($blogs) > 1):?> in <strong><?=$article->blog->name?></strong><?php endif; ?>)</span></div>
 			<div class="actions">
 				<a class="edit" href="<?=site_url('admin/blog/edit/'.$article->id)?>">edit</a>
 				<a class="delete" href="<?=site_url('admin/blog/destroy/'.$article->id)?>">delete</a>
