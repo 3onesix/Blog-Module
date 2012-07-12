@@ -10,11 +10,13 @@ function install()
 	create_table('starter_articles', array(
 		array('name' => 'starter_blog_id', 'type' => 'integer'),
 		array('name' => 'user_id', 'type' => 'integer'),
+		array('name' => 'type', 'type' => 'string'),
 		array('name' => 'subject', 'type' => 'string'),
 		array('name' => 'slug', 'type' => 'string'),
 		array('name' => 'short', 'type' => 'binary'),
 		array('name' => 'body', 'type' => 'binary'),
 		array('name' => 'is_published', 'type' => 'boolean'),
+		array('name' => 'published_at', 'type' => 'integer'),
 		array('name' => 'image_id', 'type' => 'integer'),
 		MIGRATION_TIMESTAMPS
 	));
