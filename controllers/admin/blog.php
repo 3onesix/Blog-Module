@@ -169,6 +169,13 @@ class Blog extends MY_Controller
 		redirect('admin/blog');
 	}
 	
+	public function action_remove_image($id)
+	{
+		$article = $this->article_model->first($id);
+		$article->update_attribute('image_id', null);
+		redirect('admin/blog/edit/'.$id);
+	}
+	
 	public function action_destroy($id)
 	{
 		$article = $this->article_model->first($id);

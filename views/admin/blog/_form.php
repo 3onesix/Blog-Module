@@ -1,5 +1,5 @@
 <?php $this->load->view('admin/_errors', array('errors' => $article->errors()))?>
-<div id="page_variables">
+<div id="blog-module-form">
 	<fieldset>
 		<?php if (count($blogs) > 1): ?>
 			<div class="field">
@@ -36,7 +36,10 @@
 				'data-width' => $this->module->setting('image_width'),
 				'data-height' => $this->module->setting('image_height')
 			)); ?>
-			<?php if($article->image): ?><img src="<?=$article->image->url?>" /><?php endif; ?>	
+			<?php if($article->image): ?>
+				<img src="<?=$article->image->url?>" />
+				<a href="<?php echo site_url('admin/blog/remove_image/'.$article->id); ?>" class="delete">remove image</a>
+			<?php endif; ?>	
 		<?php endif; ?>
 		</div>
 		<?php 
